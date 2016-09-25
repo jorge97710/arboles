@@ -8,7 +8,7 @@ public class ArbolBinario <T extends Comparable<T>>  implements Iterable<T>{
 
 	public ArbolBinario(){
 		this.raiz=null;
-		this.comparator = null;
+		this.comparator = null; 
 	}
 
 	public ArbolBinario(Comparator<T> comp)
@@ -118,6 +118,40 @@ public class ArbolBinario <T extends Comparable<T>>  implements Iterable<T>{
 
 		return sb.toString();
 	}
+
+/*************************************************
+ *
+ *            TRAVERSAL
+ *
+ **************************************************/
+
+   public void preOrderTraversal()
+   {
+      preOrderHelper(raiz);
+   }
+   private void preOrderHelper(NodoArbol r)
+   {
+      if (r != null)
+      {
+         System.out.print(r+" ");
+         preOrderHelper(r.i);
+         preOrderHelper(r.d);
+      }
+   }
+
+   public void inOrderTraversal()
+   {
+      inOrderHelper(raiz);
+   }
+   private void inOrderHelper(NodoArbol r)
+   {
+      if (r != null)
+      {
+         inOrderHelper(r.i);
+         System.out.print(r+" ");
+         inOrderHelper(r.d);
+      }
+   }
 	/*****************************************************
 	 *
 	 *            TREE ITERATOR
