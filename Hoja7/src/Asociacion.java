@@ -1,11 +1,9 @@
 import java.util.HashMap;
 
-public class Asociacion<K,V> {
-
+public class Asociacion<K,V> implements Comparable<Asociacion<K,V>> {
 
 	private HashMap<K,V> dic;
-
-
+ 
 	public Asociacion(){
 		dic = new HashMap<K,V>();
 	}
@@ -20,7 +18,6 @@ public class Asociacion<K,V> {
 		return dic.get(key);
 	}
 
-
 	public boolean containsKey(K key){
 		if(dic.containsKey(key)){
 			System.out.println("Si existe!");
@@ -29,5 +26,12 @@ public class Asociacion<K,V> {
 			System.out.println("No existe!");
 			return false;
 		}
+	}
+
+
+	@Override
+	public int compareTo(Asociacion o) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 }
