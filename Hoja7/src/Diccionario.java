@@ -67,11 +67,11 @@ public class Diccionario {
 			largo=i.length();
 			for (contador =1; contador<largo-2; contador++){ 
 				if (i.charAt(contador)==','){
-					txt2=i.substring(contador+1,largo-1);
-					//System.out.println(txt2);
+					txt2=i.substring(contador+1,largo);
+					System.out.println(txt2);
 					cole.insertar(txt1, txt2);
 					cole2.insertar(txt1, j);
-					//System.out.println("h"+txt1);
+					System.out.println(txt1);
 					arbol.agregarNodo(txt1);
 				}
 				else{
