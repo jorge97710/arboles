@@ -13,7 +13,11 @@ public class Diccionario {
 	private Asociacion<String,String> cole = new Asociacion<String,String>();
 	private Asociacion<String,String> cole2 = new Asociacion<String,String>();
 	private ArrayList<String> array = new ArrayList<String>();
-	
+    static Stack<String> miStack = new Stack<String>();
+
+    static Stack<String> miStack2 = new Stack<String>();
+
+    static String textoArray[];
 	/**
 	 * LeerContenido recibe como parametro el archivo donde estan los datos.
 	 * devuelve el texto que esta en la linea. si no se encuentra el archivo
@@ -33,6 +37,23 @@ public class Diccionario {
 			}
 		return array;
 		}
+	
+	
+	static String leerContenidos(String archivo) {
+    	String texto="",temp="",bfRead; 
+    	try{
+			 BufferedReader ar = new BufferedReader (new FileReader(archivo));
+			 while ((bfRead = ar.readLine()) != null){
+				 temp+=bfRead;
+			 }
+			 texto=temp;
+		 }catch (Exception e) {
+				JOptionPane.showMessageDialog(null, "No se encontro archivo");
+				}
+
+		 
+		 return texto;
+	    }
 	/**
 	 * 
 	 */
@@ -68,23 +89,49 @@ public class Diccionario {
 		for(String i: arbol.recorrido){
 			System.out.println(cole2.get(i));
 		}
+		//cole2.insertar("new", "nueva");
+		//System.out.println(cole.get("ame"));
+			System.out.println(arbol.search("ame"));
+		
 	}
 	void buscar(String dir){
-	int largo,contador;
-	for (String i:leerContenido(dir)){
-		largo=i.length();
-		for (contador =1; contador<largo-2; contador++){ 
-			if (i.charAt(contador)==' '){
-				
-			}
+	String texto="",a,traduccion="";
+	int j=0;
+	texto=leerContenidos(dir);
+	textoArray= texto.split(" ");
+		for (String i: textoArray){
+			a=i.substring(1,i.length());
+			miStack.push(a);
+			miStack2.push(a);
+			//System.out.println(a);
 		}
+	
+		System.out.println(arbol.search("ame"));
+	
+		for (String i:textoArray)
+	{
+		if(arbol.search(miStack.pop())){
+			traduccion=" "+traduccion+cole2.get(miStack2.pop());
+		}else{
+			traduccion="*"+textoArray[j]+"*";
+
+		}
+		j++;
 	}
+	System.out.println(traduccion);
+		
+		
 	}
 	public static void main(String[] args)
-	   {
+	   
+	{
 		Diccionario di = new Diccionario();
-	     di.crear("C:\\Users\\Carlos\\Desktop\\Hola.txt");
+		Diccionario dis = new Diccionario();
+
+	     di.crear("C:\\Users\\JorgeAndres\\Desktop\\Hola.txt");
 	     di.in();
+	     dis.buscar("C:\\Users\\JorgeAndres\\Desktop\\oracion.txt");
+	     
 
 	   }
 	

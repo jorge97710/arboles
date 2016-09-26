@@ -151,6 +151,7 @@ public class ArbolBinario <T extends Comparable<T>>  implements Iterable<T>{
       if (r != null)
       {
          inOrderHelper(r.i);
+         
          //System.out.print(r+" ");
          recorrido.add(r.toString());
          inOrderHelper(r.d);
