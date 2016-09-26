@@ -14,6 +14,8 @@ public class Diccionario {
 	private Asociacion<String,String> cole2 = new Asociacion<String,String>();
 	private ArrayList<String> array = new ArrayList<String>();
     static Stack<String> miStack = new Stack<String>();
+	private ArrayList<String> array2 = new ArrayList<String>();
+
 
     static Stack<String> miStack2 = new Stack<String>();
 
@@ -96,24 +98,29 @@ public class Diccionario {
 	}
 	void buscar(String dir){
 	String texto="",a,traduccion="";
-	int j=0;
+	int j=0,k=0;
 	texto=leerContenidos(dir);
 	textoArray= texto.split(" ");
 		for (String i: textoArray){
 			a=i.substring(1,i.length());
-			miStack.push(a);
-			miStack2.push(a);
-			//System.out.println(a);
+			array2.add(a);
+			array.add(i);
+		//	miStack.push(a);
+		//	miStack2.push(a);
+		//	System.out.println(a);
+			k++;
 		}
 	
-		System.out.println(arbol.search("ame"));
+		System.out.println(arbol.search("og"));
 	
 		for (String i:textoArray)
 	{
-		if(arbol.search(miStack.pop())){
-			traduccion=" "+traduccion+cole2.get(miStack2.pop());
+		if(arbol.search(array2.get(j))){
+			System.out.println("hay traduccion de "+array2.get(j)+" y es "+cole.get(array2.get(j)));
+			traduccion+=cole.get(array2.get(j));
 		}else{
-			traduccion="*"+textoArray[j]+"*";
+			System.out.println("nohay de "+ array2.get(j));
+			traduccion+="*"+array2.get(j)+"*";
 
 		}
 		j++;
@@ -130,7 +137,7 @@ public class Diccionario {
 
 	     di.crear("C:\\Users\\JorgeAndres\\Desktop\\Hola.txt");
 	     di.in();
-	     dis.buscar("C:\\Users\\JorgeAndres\\Desktop\\oracion.txt");
+	     di.buscar("C:\\Users\\JorgeAndres\\Desktop\\oracion.txt");
 	     
 
 	   }
