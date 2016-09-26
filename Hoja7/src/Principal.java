@@ -12,6 +12,8 @@ public class Principal {
 	}
 	public static void main (String args[]){
 		ejecutar();
+		System.out.println("Busqueda inOrder");
+		
 		
 	}
 }

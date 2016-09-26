@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.Stack;
@@ -5,6 +6,7 @@ import java.util.Stack;
 public class ArbolBinario <T extends Comparable<T>>  implements Iterable<T>{
 	private NodoArbol<T> raiz;
 	private Comparator<T> comparator;
+	ArrayList<String> recorrido = new ArrayList<String>();
 
 	public ArbolBinario(){
 		this.raiz=null;
@@ -133,7 +135,8 @@ public class ArbolBinario <T extends Comparable<T>>  implements Iterable<T>{
    {
       if (r != null)
       {
-         System.out.print(r+" ");
+         //System.out.print(r+" ");
+         
          preOrderHelper(r.i);
          preOrderHelper(r.d);
       }
@@ -148,7 +151,8 @@ public class ArbolBinario <T extends Comparable<T>>  implements Iterable<T>{
       if (r != null)
       {
          inOrderHelper(r.i);
-         System.out.print(r+" ");
+         //System.out.print(r+" ");
+         recorrido.add(r.toString());
          inOrderHelper(r.d);
       }
    }
