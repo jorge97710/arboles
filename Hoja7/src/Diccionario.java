@@ -11,6 +11,7 @@ public class Diccionario {
 	// Atributos
 	private ArbolBinario<String> arbol = new ArbolBinario<String>(); 
 	private Asociacion<String,String> cole = new Asociacion<String,String>();
+	private Asociacion<String,String> cole2 = new Asociacion<String,String>();
 	private ArrayList<String> array = new ArrayList<String>();
 	
 	/**
@@ -37,14 +38,16 @@ public class Diccionario {
 	 */
 	void crear(String dir) {
 		int largo,contador;
-		String txt1 = "",txt2;
+		String txt1 = "",txt2,j;
 		for (String i : leerContenido(dir)) {
+			j=i;
 			largo=i.length();
 			for (contador =1; contador<largo-2; contador++){ 
 				if (i.charAt(contador)==','){
 					txt2=i.substring(contador+1,largo-1);
 					//System.out.println(txt2);
 					cole.insertar(txt1, txt2);
+					cole2.insertar(txt1, j);
 					//System.out.println("h"+txt1);
 					arbol.agregarNodo(txt1);
 				}
@@ -63,7 +66,7 @@ public class Diccionario {
 	void in(){
 		arbol.inOrderTraversal();
 		for(String i: arbol.recorrido){
-			System.out.println(cole.get(i));
+			System.out.println(cole2.get(i));
 		}
 	}
 	void buscar(String dir){
