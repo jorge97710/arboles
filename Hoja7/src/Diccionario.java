@@ -1,4 +1,5 @@
 import java.io.BufferedReader;
+
 import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.List;
@@ -65,11 +66,11 @@ public class Diccionario {
 			largo = i.length();
 			for (contador = 1; contador < largo - 2; contador++) {
 				if (i.charAt(contador) == ',') {
-					txt2 = i.substring(contador + 1, largo-1);
-					System.out.println(txt2);
+					txt2 = i.substring(contador + 1, largo - 1);
+					//System.out.println(txt2);
 					cole.insertar(txt1, txt2);
 					cole2.insertar(txt1, j);
-					System.out.println(txt1);
+					//System.out.println(txt1);
 					arbol.agregarNodo(txt1);
 				} else {
 					txt1 += i.charAt(contador);
@@ -88,10 +89,7 @@ public class Diccionario {
 		for (String i : arbol.recorrido) {
 			System.out.println(cole2.get(i));
 		}
-		// cole2.insertar("new", "nueva");
-		// System.out.println(cole.get("ame"));
-		System.out.println(arbol.search("ame"));
-
+		
 	}
 
 	void buscar(String dir) {
@@ -100,24 +98,15 @@ public class Diccionario {
 		texto = leerContenidos(dir);
 		textoArray = texto.split(" ");
 		for (String i : textoArray) {
-			//a = i.substring(1, i.length());
 			array2.add(i);
 			array.add(i);
-			// miStack.push(a);
-			// miStack2.push(a);
-			// System.out.println(a);
 			k++;
 		}
 
-		System.out.println(arbol.search("og"));
-
 		for (String i : textoArray) {
 			if (arbol.search(array2.get(j))) {
-				System.out.println("hay traduccion de " + array2.get(j)
-						+ " y es " + cole.get(array2.get(j)));
 				traduccion += cole.get(array2.get(j));
 			} else {
-				System.out.println("nohay de " + array2.get(j));
 				traduccion += "*" + array2.get(j) + "*";
 
 			}
