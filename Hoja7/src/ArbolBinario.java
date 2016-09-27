@@ -8,16 +8,27 @@ public class ArbolBinario<T extends Comparable<T>> implements Iterable<T> {
 	private Comparator<T> comparator;
 	ArrayList<String> recorrido = new ArrayList<String>();
 
+	/**
+	 * 
+	 */
 	public ArbolBinario() {
 		this.raiz = null;
 		this.comparator = null;
 	}
 
+	/**
+	 * @param comp
+	 */
 	public ArbolBinario(Comparator<T> comp) {
 		this.raiz = null;
 		comparator = comp;
 	}
 
+	/**
+	 * @param x
+	 * @param y
+	 * @return
+	 */
 	private int compare(T x, T y) {
 		if (comparator == null)
 			return x.compareTo(y);
@@ -26,10 +37,18 @@ public class ArbolBinario<T extends Comparable<T>> implements Iterable<T> {
 	}
 
 	// Metodo para insertar un nodo
+	/**
+	 * @param dato
+	 */
 	public void agregarNodo(T dato) {
 		raiz = insert(raiz, dato);
 	}
 
+	/**
+	 * @param p
+	 * @param toInsert
+	 * @return
+	 */
 	private NodoArbol<T> insert(NodoArbol<T> p, T toInsert) {
 		if (p == null)
 			return new NodoArbol<T>(toInsert);
@@ -50,10 +69,19 @@ public class ArbolBinario<T extends Comparable<T>> implements Iterable<T> {
 	 * SEARCH
 	 *
 	 ******************************************************/
+	/**
+	 * @param toSearch
+	 * @return
+	 */
 	public boolean search(T toSearch) {
 		return search(raiz, toSearch);
 	}
 
+	/**
+	 * @param p
+	 * @param toSearch
+	 * @return
+	 */
 	private boolean search(NodoArbol<T> p, T toSearch) {
 		if (p == null)
 			return false;
@@ -71,10 +99,18 @@ public class ArbolBinario<T extends Comparable<T>> implements Iterable<T> {
 	 *
 	 ******************************************************/
 
+	/**
+	 * @param toDelete
+	 */
 	public void delete(T toDelete) {
 		raiz = delete(raiz, toDelete);
 	}
 
+	/**
+	 * @param p
+	 * @param toDelete
+	 * @return
+	 */
 	private NodoArbol<T> delete(NodoArbol<T> p, T toDelete) {
 		if (p == null)
 			throw new RuntimeException("cannot delete.");
@@ -97,6 +133,10 @@ public class ArbolBinario<T extends Comparable<T>> implements Iterable<T> {
 		return p;
 	}
 
+	/**
+	 * @param p
+	 * @return
+	 */
 	private T retrieveData(NodoArbol<T> p) {
 		while (p.d != null)
 			p = p.d;
@@ -110,6 +150,9 @@ public class ArbolBinario<T extends Comparable<T>> implements Iterable<T> {
 	 *
 	 **************************************************/
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
 	public String toString() {
 		StringBuffer sb = new StringBuffer();
 		for (T dato : this)
@@ -124,10 +167,16 @@ public class ArbolBinario<T extends Comparable<T>> implements Iterable<T> {
 	 *
 	 **************************************************/
 
+	/**
+	 * 
+	 */
 	public void preOrderTraversal() {
 		preOrderHelper(raiz);
 	}
 
+	/**
+	 * @param r
+	 */
 	private void preOrderHelper(NodoArbol r) {
 		if (r != null) {
 			// System.out.print(r+" ");
@@ -137,10 +186,16 @@ public class ArbolBinario<T extends Comparable<T>> implements Iterable<T> {
 		}
 	}
 
+	/**
+	 * 
+	 */
 	public void inOrderTraversal() {
 		inOrderHelper(raiz);
 	}
 
+	/**
+	 * @param r
+	 */
 	private void inOrderHelper(NodoArbol r) {
 		if (r != null) {
 			inOrderHelper(r.i);
@@ -157,6 +212,9 @@ public class ArbolBinario<T extends Comparable<T>> implements Iterable<T> {
 	 *
 	 ******************************************************/
 
+	/* (non-Javadoc)
+	 * @see java.lang.Iterable#iterator()
+	 */
 	public Iterator<T> iterator() {
 		return new MyIterator();
 	}
@@ -165,15 +223,24 @@ public class ArbolBinario<T extends Comparable<T>> implements Iterable<T> {
 	private class MyIterator implements Iterator<T> {
 		Stack<NodoArbol<T>> stk = new Stack<NodoArbol<T>>();
 
+		/**
+		 * 
+		 */
 		public MyIterator() {
 			if (raiz != null)
 				stk.push(raiz);
 		}
 
+		/* (non-Javadoc)
+		 * @see java.util.Iterator#hasNext()
+		 */
 		public boolean hasNext() {
 			return !stk.isEmpty();
 		}
 
+		/* (non-Javadoc)
+		 * @see java.util.Iterator#next()
+		 */
 		public T next() {
 			NodoArbol<T> cur = stk.peek();
 			if (cur.i != null) {
@@ -191,6 +258,9 @@ public class ArbolBinario<T extends Comparable<T>> implements Iterable<T> {
 			return cur.dato;
 		}// end of next()
 
+		/* (non-Javadoc)
+		 * @see java.util.Iterator#remove()
+		 */
 		public void remove() {
 
 		}

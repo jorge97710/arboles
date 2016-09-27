@@ -7,8 +7,15 @@ import java.util.Stack;
 
 import javax.swing.JOptionPane;
 
+/**
+ * @author JorgeAndres
+ * @author carlos calderon
+ */
 public class Diccionario {
 	// Atributos
+	/**
+	 * 
+	 */
 	private ArbolBinario<String> arbol = new ArbolBinario<String>();
 	private Asociacion<String, String> cole = new Asociacion<String, String>();
 	private Asociacion<String, String> cole2 = new Asociacion<String, String>();
@@ -40,6 +47,12 @@ public class Diccionario {
 		return array;
 	}
 
+	/**
+	 * metodo que lee el contenido y lo pone en una sola linea
+	 * 
+	 * @param archivo
+	 * @return
+	 */
 	static String leerContenidos(String archivo) {
 		String texto = "", temp = "", bfRead;
 		try {
@@ -58,6 +71,11 @@ public class Diccionario {
 	/**
 	 * 
 	 */
+	/**
+	 * metodo que crea el arbol y relaciones entre palabras
+	 * 
+	 * @param dir
+	 */
 	void crear(String dir) {
 		int largo, contador;
 		String txt1 = "", txt2, j;
@@ -67,10 +85,8 @@ public class Diccionario {
 			for (contador = 1; contador < largo - 2; contador++) {
 				if (i.charAt(contador) == ',') {
 					txt2 = i.substring(contador + 1, largo - 1);
-					//System.out.println(txt2);
 					cole.insertar(txt1, txt2);
 					cole2.insertar(txt1, j);
-					//System.out.println(txt1);
 					arbol.agregarNodo(txt1);
 				} else {
 					txt1 += i.charAt(contador);
@@ -84,14 +100,25 @@ public class Diccionario {
 	/*
 	 * Binary search
 	 */
+	/**
+	 * metodo que se encarga de desplegar inorder el arbol
+	 */
 	void in() {
 		arbol.inOrderTraversal();
 		for (String i : arbol.recorrido) {
 			System.out.println(cole2.get(i));
 		}
-		
+
 	}
 
+	/**
+	 * metodo que se encarga de primero crear un arraylist que tiene las
+	 * palabras en ingles y hace comparaciones para poder ver si existe o no. si
+	 * existe cambia la palabra por la que tiene asociada la key. y si no agrega
+	 * al texto traducido la palabra en ingles entre asteriscos
+	 * 
+	 * @param dir
+	 */
 	void buscar(String dir) {
 		String texto = "", a, traduccion = "";
 		int j = 0, k = 0;
@@ -116,11 +143,15 @@ public class Diccionario {
 
 	}
 
+	/**
+	 * metodo main
+	 * 
+	 * @param args
+	 */
 	public static void main(String[] args)
 
 	{
 		Diccionario di = new Diccionario();
-		Diccionario dis = new Diccionario();
 
 		di.crear("C:\\Users\\JorgeAndres\\Desktop\\Hola.txt");
 		di.in();
