@@ -1,4 +1,5 @@
 import java.util.HashMap;
+
 /*
  *Jorge Azmitia 15202
  *Carlos Calderon 15219
@@ -9,8 +10,8 @@ import java.util.HashMap;
 /**
  * @author Jorge Andres
  * @author Carlos Calderon
- * @param <K>
- * @param <V>
+ * @param <K> Llave
+ * @param <V> Valor
  */
 public class Asociacion<K, V> implements Comparable<Asociacion<K, V>> {
 
@@ -23,25 +24,20 @@ public class Asociacion<K, V> implements Comparable<Asociacion<K, V>> {
 		dic = new HashMap<K, V>();
 	}
 
-	/**
-	 * @param key
-	 * @param value
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Comparable#compareTo(java.lang.Object)
 	 */
-	public void insertar(K key, V value) {
-		dic.put(key, value);
+	@Override
+	public int compareTo(Asociacion o) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 	/**
-	 * @param key
-	 * @return
-	 */
-	public V get(K key) {
-		return dic.get(key);
-	}
-
-	/**
-	 * @param key
-	 * @return
+	 * @param key Es la llave a la cual se le asocia un valor
+	 * @return Falso o Verdadero de pendiendo en si existe una relacion en la que esta sea la llave
 	 */
 	public boolean containsKey(K key) {
 		if (dic.containsKey(key)) {
@@ -53,12 +49,19 @@ public class Asociacion<K, V> implements Comparable<Asociacion<K, V>> {
 		}
 	}
 
-	/* (non-Javadoc)
-	 * @see java.lang.Comparable#compareTo(java.lang.Object)
+	/**
+	 * @param key  Es la llave a la cual se le asocia un valor
+	 * @return dic.get(key) Es el valor que tiene asociado la llave
 	 */
-	@Override
-	public int compareTo(Asociacion o) {
-		// TODO Auto-generated method stub
-		return 0;
+	public V get(K key) {
+		return dic.get(key);
+	}
+
+	/**
+	 * @param key  Es la llave a la cual se le asocia un valor
+	 * @param value Es el valor a ingresar como asociado a la llave
+	 */
+	public void insertar(K key, V value) {
+		dic.put(key, value);
 	}
 }
