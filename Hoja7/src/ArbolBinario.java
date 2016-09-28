@@ -2,9 +2,26 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.Stack;
-
+/**
+ * @author Jorge Azmitia, 15202
+ * @author Carlos Calderon, 15219
+ * @param <K> Llave
+ * @param <V> Valor
+ * @Version 2.0
+ * Clase que simula el arbol binario
+ * Inspirado en :https://www.cs.cmu.edu/~adamchik/15-121/lectures/Trees/code/BST.java
+ */
 public class ArbolBinario<T extends Comparable<T>> implements Iterable<T> {
-	// pre-order
+	/*Atributos*/
+	private NodoArbol<T> raiz;
+	private Comparator<T> comparator;
+	ArrayList<String> recorrido = new ArrayList<String>();
+	
+	/**
+	 * Inner Class para el iterador
+	 * Inspirado en : https://www.cs.cmu.edu/~adamchik/15-121/lectures/Trees/code/BST.java
+	 *
+	 */
 	private class MyIterator implements Iterator<T> {
 		Stack<NodoArbol<T>> stk = new Stack<NodoArbol<T>>();
 
@@ -18,7 +35,7 @@ public class ArbolBinario<T extends Comparable<T>> implements Iterable<T> {
 
 		/*
 		 * (non-Javadoc)
-		 * 
+		 * Revisa si existe un siguiente nodo
 		 * @see java.util.Iterator#hasNext()
 		 */
 		public boolean hasNext() {
@@ -49,19 +66,13 @@ public class ArbolBinario<T extends Comparable<T>> implements Iterable<T> {
 
 		/*
 		 * (non-Javadoc)
-		 * 
+		 * Metodo para eliminar
 		 * @see java.util.Iterator#remove()
 		 */
 		public void remove() {
 
 		}
 	}// end of MyIterator
-
-	private NodoArbol<T> raiz;
-	private Comparator<T> comparator;
-
-	ArrayList<String> recorrido = new ArrayList<String>();
-
 	/**
 	 * 
 	 */
@@ -80,7 +91,8 @@ public class ArbolBinario<T extends Comparable<T>> implements Iterable<T> {
 
 	// Metodo para insertar un nodo
 	/**
-	 * @param dato
+	 *Metodo que sirve para agregar un nodo 
+	 * @param dato Es el dato a ingresar
 	 * @return
 	 */
 	public boolean agregarNodo(T dato) {
@@ -89,8 +101,9 @@ public class ArbolBinario<T extends Comparable<T>> implements Iterable<T> {
 	}
 
 	/**
-	 * @param x
-	 * @param y
+	 *Metodo que sirve para comparar 2 datos tipo T
+	 * @param x Dato 1 a comparar
+	 * @param y Dato 2 a comparar
 	 * @return
 	 */
 	private int compare(T x, T y) {
@@ -101,7 +114,8 @@ public class ArbolBinario<T extends Comparable<T>> implements Iterable<T> {
 	}
 
 	/**
-	 * @param p
+	 * Metodo para eliminar nodo
+	 * @param p	El nodo a eliminar
 	 * @param toDelete
 	 * @return
 	 */
@@ -128,32 +142,32 @@ public class ArbolBinario<T extends Comparable<T>> implements Iterable<T> {
 	}
 
 	/**
-	 * @param toDelete
+	 *Metodo para eliminar dato
+	 * @param toDelete Dato a eliminar
 	 */
 	public void delete(T toDelete) {
 		raiz = delete(raiz, toDelete);
 	}
 
-	/*****************************************************
+	/*******************
 	 *
 	 * DELETE
 	 *
-	 ******************************************************/
+	 ******************/
 
 	/**
-	 * @param r
+	 * @param r nodo  al llegar genera la busqueda in order
 	 */
 	private void inOrderHelper(NodoArbol r) {
 		if (r != null) {
 			inOrderHelper(r.i);
-
-			// System.out.print(r+" ");
 			recorrido.add(r.toString());
 			inOrderHelper(r.d);
 		}
 	}
 
 	/**
+	 * Metodo para ordenar en in order
 	 * 
 	 */
 	public void inOrderTraversal() {
@@ -161,8 +175,9 @@ public class ArbolBinario<T extends Comparable<T>> implements Iterable<T> {
 	}
 
 	/**
-	 * @param p
-	 * @param toInsert
+	 *Metodo que sirve para insertar un nodo y valor
+	 * @param p Nodo a insertar
+	 * @param toInsert Elemento a insertar
 	 * @return
 	 */
 	private NodoArbol<T> insert(NodoArbol<T> p, T toInsert) {
@@ -180,11 +195,11 @@ public class ArbolBinario<T extends Comparable<T>> implements Iterable<T> {
 		return p;
 	}
 
-	/*****************************************************
+	/*******************
 	 *
 	 * TREE ITERATOR
 	 *
-	 ******************************************************/
+	 ******************/
 
 	/*
 	 * (non-Javadoc)
@@ -195,11 +210,11 @@ public class ArbolBinario<T extends Comparable<T>> implements Iterable<T> {
 		return new MyIterator();
 	}
 
-	/*************************************************
+	/*****************
 	 *
 	 * TRAVERSAL
 	 *
-	 **************************************************/
+	 ******************/
 
 	/**
 	 * @param r
@@ -214,7 +229,7 @@ public class ArbolBinario<T extends Comparable<T>> implements Iterable<T> {
 	}
 
 	/**
-	 * 
+	 * Metodo para ordenar en Pre-order
 	 */
 	public void preOrderTraversal() {
 		preOrderHelper(raiz);
@@ -232,8 +247,9 @@ public class ArbolBinario<T extends Comparable<T>> implements Iterable<T> {
 	}
 
 	/**
-	 * @param p
-	 * @param toSearch
+	 *Metodo para buscar en un arbol un nodo y regresar true si existe
+	 * @param p El nodo 
+	 * @param toSearch El elemento 
 	 * @return
 	 */
 	private boolean search(NodoArbol<T> p, T toSearch) {
@@ -247,24 +263,24 @@ public class ArbolBinario<T extends Comparable<T>> implements Iterable<T> {
 			return search(p.d, toSearch);
 	}
 
-	/*****************************************************
+	/*******************
 	 *
 	 * SEARCH
 	 *
-	 ******************************************************/
+	 ******************/
 	/**
-	 * @param toSearch
-	 * @return
+	 * @param toSearch Dato a buscar
+	 * @return true si encontro el dato o false si no fue asi
 	 */
 	public boolean search(T toSearch) {
 		return search(raiz, toSearch);
 	}
 
-	/*************************************************
+	/*****************
 	 *
 	 * toString
 	 *
-	 **************************************************/
+	 ******************/
 
 	/*
 	 * (non-Javadoc)

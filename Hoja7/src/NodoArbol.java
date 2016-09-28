@@ -1,26 +1,17 @@
 import java.util.Comparator;
 
 /**
- * @author JorgeAndres
- * @author Carlos Calderon
+ * @author Jorge Azmitia, 15202
+ * @author Carlos Calderon ,15219
  * @param <T>
+ * @Version 2.0
+ * Clase que simula el nodo del arbol binario
  */
 public class NodoArbol<T> {
-	class MyComp1 implements Comparator<Integer> {
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Comparator#compare(java.lang.Object, java.lang.Object)
-		 */
-		public int compare(Integer x, Integer y) {
-			return y - x;
-		}
-	}
-
-	// Atributos
+	
+	/* Atributos*/
 	T dato;
 	NodoArbol<T> i;
-
 	NodoArbol<T> d;
 
 	/**
@@ -31,9 +22,9 @@ public class NodoArbol<T> {
 	}
 
 	/**
-	 * @param dato
-	 * @param i
-	 * @param d
+	 * @param dato dato contenido en el nodo
+	 * @param i nodo de la izquierda
+	 * @param d nodo de la derecha
 	 */
 	public NodoArbol(T dato, NodoArbol<T> i, NodoArbol<T> d) {
 		this.i = i;
@@ -48,5 +39,18 @@ public class NodoArbol<T> {
 	 */
 	public String toString() {
 		return dato.toString();
+	}
+	/**
+	 * Inner class para utilizar compare
+	 */
+	class MyComp1 implements Comparator<Integer> {
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.util.Comparator#compare(java.lang.Object, java.lang.Object)
+		 */
+		public int compare(Integer x, Integer y) {
+			return y - x;
+		}
 	}
 }

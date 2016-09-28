@@ -8,20 +8,27 @@ import javax.swing.JOptionPane;
 /**
  * @author JorgeAndres
  * @author carlos calderon
- * @version 1
+ * @version 2.0
+ * Clase donde se se simula al diccionario. Se instancia tanto el arbol binario,
+ * como la clase de asociacion, para buscar traducciones en base a una llave.
  * 
  */
 public class Diccionario {
+	/*Atributos*/
 	static Stack<String> miStack = new Stack<String>();
 	static Stack<String> miStack2 = new Stack<String>();
 	static String textoArray[];
+	private ArbolBinario<String> arbol = new ArbolBinario<String>();
+	private Asociacion<String, String> cole = new Asociacion<String, String>();
+	private Asociacion<String, String> cole2 = new Asociacion<String, String>();
+	private ArrayList<String> array = new ArrayList<String>();
+	private ArrayList<String> array2 = new ArrayList<String>();
 
 	/**
 	 * Metodo que lee el contenido y lo pone en una sola linea. Este es con el
 	 * que se lee el texto que viene en ingles
 	 * 
-	 * @param archivo
-	 *            El archivo que tiene el texto en ingles
+	 * @param archivo El archivo que tiene el texto en ingles
 	 * @return texto variable que tiene como un string todo el texto
 	 */
 	static String leerContenidos(String archivo) {
@@ -38,37 +45,6 @@ public class Diccionario {
 
 		return texto;
 	}
-
-	/**
-	 * Metodo main
-	 * 
-	 * @param args
-	 */
-	public static void main(String[] args)
-
-	{
-		Diccionario di = new Diccionario();
-
-		di.crear("C:\\Users\\JorgeAndres\\Desktop\\Hola.txt");
-		di.in();
-		di.buscar("C:\\Users\\JorgeAndres\\Desktop\\oracion.txt");
-
-	}
-
-	// Atributos
-	/**
-	 * 
-	 */
-	private ArbolBinario<String> arbol = new ArbolBinario<String>();
-
-	private Asociacion<String, String> cole = new Asociacion<String, String>();
-
-	private Asociacion<String, String> cole2 = new Asociacion<String, String>();
-
-	private ArrayList<String> array = new ArrayList<String>();
-
-	private ArrayList<String> array2 = new ArrayList<String>();
-
 	/**
 	 * Metodo que se encarga de primero crear un arraylist que tiene las
 	 * palabras en ingles. luego hace comparaciones para poder ver si la palabra
@@ -80,8 +56,7 @@ public class Diccionario {
 	 * asteriscos y se agrega a el String traduccion
 	 * 
 	 * 
-	 * @param dir
-	 *            El directorio del archivo que tiene el texto en ingles
+	 * @param dir El directorio del archivo que tiene el texto en ingles
 	 */
 	void buscar(String dir) {
 		String texto = "", traduccion = "";
@@ -111,8 +86,7 @@ public class Diccionario {
 	 * ingles y a su vez generando las relaciones entre palabras en ingles y
 	 * español
 	 * 
-	 * @param dir
-	 *            Es el directorio donde se encuentra el archivo que las tiene
+	 * @param dir Es el directorio donde se encuentra el archivo que las tiene
 	 */
 	void crear(String dir) {
 		int largo, contador;
@@ -154,7 +128,7 @@ public class Diccionario {
 	 * 
 	 * @param archivo
 	 *            Este es el archivo que contiene las palabras de forma
-	 *            (ingles,español)
+	 *            (ingles,espanol)
 	 * @return array este es un array que tiene las palabras
 	 */
 	ArrayList<String> leerContenido(String archivo) {
@@ -169,5 +143,6 @@ public class Diccionario {
 		}
 		return array;
 	}
+	
 
 }
